@@ -38,25 +38,35 @@ public class Main {
 
         Customer customer1 = new Customer("Customer1", 60.00);
 
-//        System.out.println(gallery.getCollection().values().toString());
+        System.out.println("Gallery collection pre purchase: " + gallery.getCollection().values());
+        System.out.println("Customer collection pre purchase: " + customer1.getCollection().values());
+        System.out.println("Stock value before purchase: " + gallery.stockTake());
 
+        System.out.println("Purchase made.");
         purchase(gallery, customer1, artwork1);
 
-        System.out.println(customer1.getWallet());
-        System.out.println(gallery.getTill());
+        System.out.println("Current gallery stock value: " + gallery.stockTake());
+        System.out.println("Customer wallet: " + customer1.getWallet());
+        System.out.println("Gallery till: " + gallery.getTill());
 
-        System.out.println(gallery.stockTake());
+        System.out.println("Gallery collection post purchase: " + gallery.getCollection().values());
+        System.out.println("Customer collection post purchase: " + customer1.getCollection().values());
 
-        System.out.println(gallery.getCollection().values());
-        System.out.println(customer1.getCollection().values());
-
+        purchase(gallery, customer1, artwork1);
+        purchase(gallery, customer1, artwork2);
+        System.out.println("Customer collection post purchase: " + customer1.getCollection().values());
     }
 
     public static void purchase(Gallery gallery, Customer customer, Artwork artwork){
-        customer.setWallet(artwork.getPrice());
-        gallery.setTill(artwork.getPrice());
-        Artwork artworkPurchased = gallery.removeFromCollection(artwork.getNFT());
-        customer.addToCollection(artwork.getNFT(), artwork);
+        if (gallery.getCollection().containsKey(artwork.getNFT())) {
+            customer.setWallet(artwork.getPrice());
+            gallery.setTill(artwork.getPrice());
+            Artwork artworkPurchased = gallery.removeFromCollection(artwork.getNFT());
+            customer.addToCollection(artwork.getNFT(), artwork);
+        }
+        else {
+            System.out.println("No such artwork inside gallery's collection.");
+        }
     }
 
 }
