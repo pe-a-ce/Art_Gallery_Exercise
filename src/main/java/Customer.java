@@ -10,6 +10,7 @@ public class Customer {
                     double wallet) {
         this.name = name;
         this.wallet = wallet;
+        this.collection = new HashMap<>();
     }
 
     public void setWallet(double payment) {
@@ -18,6 +19,14 @@ public class Customer {
 
     public double getWallet(){
         return this.wallet;
+    }
+
+    public void addToCollection(String nft, Artwork artwork){
+        this.collection.put(nft, artwork);
+    }
+
+    public HashMap<String, Artwork> getCollection() {
+        return this.collection;
     }
 
 }

@@ -38,7 +38,6 @@ public class Main {
 
         Customer customer1 = new Customer("Customer1", 60.00);
 
-
 //        System.out.println(gallery.getCollection().values().toString());
 
         purchase(gallery, customer1, artwork1);
@@ -46,15 +45,18 @@ public class Main {
         System.out.println(customer1.getWallet());
         System.out.println(gallery.getTill());
 
+        System.out.println(gallery.stockTake());
+
+        System.out.println(gallery.getCollection().values());
+        System.out.println(customer1.getCollection().values());
 
     }
 
     public static void purchase(Gallery gallery, Customer customer, Artwork artwork){
         customer.setWallet(artwork.getPrice());
         gallery.setTill(artwork.getPrice());
-
-
-
+        Artwork artworkPurchased = gallery.removeFromCollection(artwork.getNFT());
+        customer.addToCollection(artwork.getNFT(), artwork);
     }
 
 }

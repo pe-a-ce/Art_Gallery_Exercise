@@ -10,11 +10,15 @@ public class Gallery {
                    double till) {
         this.name = name;
         this.till = till;
-
+        this.collection = new HashMap<>();
     }
 
     public void addToCollection(String nft, Artwork artwork) {
         this.collection.put(nft, artwork);
+    }
+
+    public Artwork removeFromCollection(String nft){
+        return collection.remove(nft);
     }
 
     public HashMap<String, Artwork> getCollection() {
@@ -30,9 +34,10 @@ public class Gallery {
     }
 
     public double stockTake() {
-
-
-
-        return 0.0;
+        double sum = 0;
+        for (Artwork art: collection.values()) {
+            sum += art.getPrice();
+        }
+        return sum;
     }
 }
