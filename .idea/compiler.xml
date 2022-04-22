@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="art_gallery_exercise" />
+        <module name="Art_Gallery_Exercise" />
       </profile>
     </annotationProcessing>
   </component>
